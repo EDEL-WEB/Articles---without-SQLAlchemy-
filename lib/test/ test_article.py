@@ -17,7 +17,7 @@ class TestArticle(unittest.TestCase):
         self.assertEqual(article.magazine_id, self.magazine.id)
 
     def test_find_by_magazine(self):
-        # Add multiple articles under 
+        
         Article.create(self.author.id, self.magazine.id, "AI Trends")
         Article.create(self.author.id, self.magazine.id, "Quantum Computing")
 

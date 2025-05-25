@@ -43,7 +43,7 @@ class TestMagazine(unittest.TestCase):
         self.assertIn("AI and Science", titles)
 
     def test_contributing_authors(self):
-        # Add multiple articles for author1
+        # Add multiple 
         self.author1.add_article(self.magazine, "Title 1")
         self.author1.add_article(self.magazine, "Title 2")
         self.author1.add_article(self.magazine, "Title 3")
