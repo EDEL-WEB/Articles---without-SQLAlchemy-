@@ -1,6 +1,6 @@
 from lib.db.connection import get_connection
 from lib.models.article import Article
-# Note: no top-level import of Magazine here to avoid circular import
+
 
 class Author:
     def __init__(self, id, name):
@@ -30,7 +30,7 @@ class Author:
         return Article.find_by_author(self.id)
 
     def magazines(self):
-        from lib.models.magazine import Magazine  # local import to avoid circular import
+        from lib.models.magazine import Magazine  
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("""
