@@ -3,10 +3,10 @@
 from lib.db.connection import get_connection
 
 def seed_db():
-    conn = get_connection("my_database.db")  # or your DB file path
+    conn = get_connection("my_database.db") 
     cursor = conn.cursor()
     
-    # Example: create tables if they don't exist
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS authors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,7 +33,6 @@ def seed_db():
         )
     """)
     
-    # Example: Insert some initial data
     cursor.execute("INSERT INTO authors (name) VALUES (?)", ("Test Author",))
     cursor.execute("INSERT INTO magazines (name, category) VALUES (?, ?)", ("Test Magazine", "Test Category"))
     
