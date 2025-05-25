@@ -33,7 +33,7 @@ def main():
             magazine_id = int(input("Enter magazine ID: "))
             title = input("Enter article title: ")
             author = Author.find_by_id(author_id)
-            magazine = Magazine(magazine_id, "", "")  # fake instance, assuming valid ID
+            magazine = Magazine(magazine_id, "", "") 
             article = author.add_article(magazine, title)
             print(f"Article '{title}' added for author ID {author_id} and magazine ID {magazine_id}.")
 
