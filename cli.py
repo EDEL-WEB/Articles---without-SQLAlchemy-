@@ -1,4 +1,4 @@
-# cli.py
+
 
 from lib.models.author import Author
 from lib.models.magazine import Magazine
