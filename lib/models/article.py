@@ -1,11 +1,14 @@
 from lib.db.connection import get_connection
 
 class Article:
-    def __init__(self, id, title, author_id, magazine_id):
+    def __init__(self, id=None, title=None, author_id=None, magazine_id=None):
         self.id = id
         self.title = title
         self.author_id = author_id
         self.magazine_id = magazine_id
+
+    def __repr__(self):
+        return f"<Article id={self.id} title={self.title}>"
 
     @classmethod
     def create(cls, title, author_id, magazine_id):
@@ -21,13 +24,13 @@ class Article:
         return cls(article_id, title, author_id, magazine_id)
 
     @classmethod
-    def find_by_id(cls, article_id):
+    def all(cls):
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT id, title, author_id, magazine_id FROM articles WHERE id = ?", (article_id,))
-        row = cursor.fetchone()
+        cursor.execute("SELECT id, title, author_id, magazine_id FROM articles")
+        rows = cursor.fetchall()
         conn.close()
-        return cls(*row) if row else None
+        return [cls(*row) for row in rows]
 
     @classmethod
     def find_by_author(cls, author_id):
@@ -46,3 +49,14 @@ class Article:
         rows = cursor.fetchall()
         conn.close()
         return [cls(*row) for row in rows]
+
+    @classmethod
+    def find_by_title(cls, title):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, title, author_id, magazine_id FROM articles WHERE title = ?", (title,))
+        row = cursor.fetchone()
+        conn.close()
+        if row:
+            return cls(*row)
+        return None
